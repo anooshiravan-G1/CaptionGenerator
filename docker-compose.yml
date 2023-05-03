@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+      - ./data:/im2txt/data
+      - ./model:/im2txt/model
+    environment:
+      - CUDA_VISIBLE_DEVICES=
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_DB: im2txt
+      POSTGRES_USER: im2txt
+      POSTGRES_PASSWORD: im2txtpassword
+    volumes:
+      - im2txt_data:/var/lib/postgresql/data/
+  
+volumes:
+  im2txt_data:

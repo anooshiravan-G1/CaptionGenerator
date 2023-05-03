@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block title %}generated Caption{%endblock%}
+{% block content %}
+  
+    <div class="card shadow-sm">
+      <img src="{{ image_url }}" alt="Uploaded Image" class="bd-placeholder-img card-img-top" width="80%" height="400">
+      <div class="card-body">
+        <p class="card-text text-dark">{{ caption }}</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm bg-dark">
+              <a href="{% url 'captions:generate_caption' %}" class="text-white">try another image</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
